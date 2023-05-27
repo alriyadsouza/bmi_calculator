@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reusableCardProp.dart';
+import 'reusableCard.dart';
+
+const bottomBar=68.0;
+const cardColor=Color(0xFF1D1E33);
+const bottomcardColor=Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
@@ -17,26 +24,62 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(children: [
               Expanded(
-                child: reusableCard(colour: Color(0xFF1D1E33),),
+                child: reusableCard(
+                  colour: cardColor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                  ),
+                ),
               ),
               Expanded(
-                child: reusableCard(colour: Color(0xFF1D1E33),),
+                child: reusableCard(
+                  colour: cardColor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
+                  ),
+                ),
               ),
             ]),
           ),
            Expanded(
-            child: reusableCard(colour: Color(0xFF1D1E33),),
+            child: reusableCard(
+              colour: cardColor,
+              cardChild: reusableCardProp(
+                icon: FontAwesomeIcons.mars,
+                label: 'MALE',
+              ),
+            ),
           ),
           Expanded(
             child: Row(children: [
               Expanded(
-                child: reusableCard(colour: Color(0xFF1D1E33),),
+                child: reusableCard(
+                  colour: cardColor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                  ),
+                ),
               ),
               Expanded(
-                child: reusableCard(colour: Color(0xFF1D1E33),),
+                child: reusableCard(
+                  colour: cardColor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                  ),
+                ),
               ),
             ]),
           ),
+          Container(
+            color: bottomcardColor,
+            margin: EdgeInsets.only(top:10.0),
+            width: double.infinity,
+            height: bottomBar,
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -49,20 +92,3 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class reusableCard extends StatelessWidget {
-
-  reusableCard({required this.colour});
-
-  Color colour;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-    );
-  }
-}
