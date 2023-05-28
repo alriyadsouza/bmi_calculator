@@ -152,14 +152,32 @@ class _InputPageState extends State<InputPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          RoundIconButton(),
-                          SizedBox(width: 10.0,),
-                          FloatingActionButton(
-                            backgroundColor: Color(0xFF4C4F5E),
+                          RoundIconButton(
+                            icon:FontAwesomeIcons.minus,
+                            child: const Text('-',
+                              style: TextStyle(
+                                fontSize: 50.0,
+                              ),
+                            ),
                             onPressed: (){
-                              print("pressed");
+                              setState(() {
+                                weight--;
+                              });
                             },
-                            child: Icon(Icons.add),
+                          ),
+                          SizedBox(width: 10.0,),
+                          RoundIconButton(
+                            icon:FontAwesomeIcons.plus,
+                            child: const Text('+',
+                              style: TextStyle(
+                                fontSize: 30.0,
+                              ),
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                weight++;
+                              });
+                            },
                           ),
                         ],
                       ),
@@ -192,18 +210,24 @@ class _InputPageState extends State<InputPage> {
 }
 
 class RoundIconButton extends StatelessWidget {
+
+  RoundIconButton({required IconData icon, required this.child, required this.onPressed});
+  final Widget child;
+  final Function onPressed;
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
+      child: child,
       constraints: const BoxConstraints.tightFor(
         width: 56.0,
         height: 56.0,
       ),
       shape: CircleBorder(),
       fillColor: Color(0xFF4C4F5E),
-      onPressed: () {
-        null;
-      },
+      onPressed: onPressed as void Function()?,
+      elevation: 6.0,
     );
   }
 }
+
+
