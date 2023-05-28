@@ -187,14 +187,58 @@ class _InputPageState extends State<InputPage> {
                 },
                 ),
               ),
-              // Expanded(
-              //   child: reusableCard(
-              //     colour: kcardColor, cardChild: null,
-              //     onPress: (){
-              //     print("pressed");
-              //   },
-              //   ),
-              // ),
+              Expanded(
+                child: reusableCard(
+                  colour: kcardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      const Text(
+                        'WEIGHT',
+                        style: klabelTextStyles,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberTextStyles,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            icon:FontAwesomeIcons.minus,
+                            child: const Text('-',
+                              style: TextStyle(
+                                fontSize: 50.0,
+                              ),
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 10.0,),
+                          RoundIconButton(
+                            icon:FontAwesomeIcons.plus,
+                            child: const Text('+',
+                              style: TextStyle(
+                                fontSize: 30.0,
+                              ),
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ), onPress: (){
+                  print("pressed");
+                },
+                ),
+              ),
             ]),
           ),
           Container(
