@@ -13,8 +13,9 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  late Gender selectGender;
+  late Gender selectGender=Gender.male;
   int height=180;
+  int weight=60;
 
     // Color malecardColor =inactivecardcolor;
     // Color femalecardColor=inactivecardcolor;
@@ -127,23 +128,57 @@ class _InputPageState extends State<InputPage> {
                    ),
                 ),
               ],
-              ),
+              ), onPress: (){
+                print("pressed");
+                },
             ),
           ),
-          // Expanded(
-          //   child: Row(children: [
-          //     Expanded(
-          //       child: reusableCard(
-          //         colour: kcardColor, cardChild: null, onPress: null,
-          //       ),
-          //     ),
-          //     Expanded(
-          //       child: reusableCard(
-          //         colour: kcardColor, cardChild: null, onPress: null,
-          //       ),
-          //     ),
-          //   ]),
-          // ),
+          Expanded(
+            child: Row(children: [
+              Expanded(
+                child: reusableCard(
+                  colour: kcardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      const Text(
+                        'WEIGHT',
+                        style: klabelTextStyles,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberTextStyles,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(),
+                          SizedBox(width: 10.0,),
+                          FloatingActionButton(
+                            backgroundColor: Color(0xFF4C4F5E),
+                            onPressed: (){
+                              print("pressed");
+                            },
+                            child: Icon(Icons.add),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ), onPress: (){
+                  print("pressed");
+                },
+                ),
+              ),
+              // Expanded(
+              //   child: reusableCard(
+              //     colour: kcardColor, cardChild: null,
+              //     onPress: (){
+              //     print("pressed");
+              //   },
+              //   ),
+              // ),
+            ]),
+          ),
           Container(
             color: kbottomcardColor,
             margin: EdgeInsets.only(top:10.0),
@@ -162,3 +197,19 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
+class RoundIconButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      constraints: const BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
+      onPressed: () {
+        null;
+      },
+    );
+  }
+}
