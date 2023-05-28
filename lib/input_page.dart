@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusableCardProp.dart';
 import 'reusableCard.dart';
+import 'constants.dart';
 
-const bottomBar=68.0;
-const cardColor=Color(0xFF1D1E33);
-const inactivecardcolor= Color(0xFF111328);
-const bottomcardColor=Color(0xFFEB1555);
 enum Gender{female,male}
 
 class InputPage extends StatefulWidget {
@@ -17,6 +14,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
 
   late Gender selectGender;
+  int height=180;
+
     // Color malecardColor =inactivecardcolor;
     // Color femalecardColor=inactivecardcolor;
     //
@@ -48,38 +47,35 @@ class _InputPageState extends State<InputPage> {
         title: const Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(children: [
               Expanded(
-                child: GestureDetector(
-                  onTap: (){
+                child: reusableCard(
+                  onPress:(){
                     setState(() {
-                      selectGender=Gender.female;
+                      selectGender=Gender.male;
                     });
                   },
-                  child: reusableCard(
-                    colour: selectGender==Gender.male? cardColor: inactivecardcolor,
-                    cardChild: reusableCardProp(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'MALE',
-                    ),
+                  colour: selectGender==Gender.male? kcardColor: kinactivecardcolor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
                   ),
                 ),
               ),
               Expanded(
-                child: GestureDetector(
-                  onTap: (){
+                child: reusableCard(
+                  onPress: (){
                     setState(() {
                       selectGender=Gender.female;
                     });
                   },
-                  child: reusableCard(
-                    colour: selectGender==Gender.female? cardColor: inactivecardcolor,
-                    cardChild: reusableCardProp(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
-                    ),
+                  colour: selectGender==Gender.female? kcardColor: kinactivecardcolor,
+                  cardChild: reusableCardProp(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
                   ),
                 ),
               ),
@@ -87,40 +83,72 @@ class _InputPageState extends State<InputPage> {
           ),
            Expanded(
             child: reusableCard(
-              colour: cardColor,
-              cardChild: reusableCardProp(
-                icon: FontAwesomeIcons.mars,
-                label: 'MALE',
+              colour: kcardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                    'HEIGHT',
+                  style: klabelTextStyles,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      height.toString(),
+                      style: kNumberTextStyles,
+                    ),
+                    const Text(
+                      'cm',
+                      style: klabelTextStyles,
+                    ),
+                  ],
+                ),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Colors.white,
+                    inactiveTrackColor: Color(0xFF8D8E98),
+                    thumbColor: Color(0xFFEB1555),
+                    overlayColor: Color(0x29EB1555),
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                    overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+                  ),
+                  child: Slider(
+                    value: height.toDouble(),
+                    min:120.0,
+                    max:220.0,
+                    onChanged: (double newValue){
+                      setState(() {
+                        height=newValue.round();
+                      });
+                    },
+                   ),
+                ),
+              ],
               ),
             ),
           ),
-          Expanded(
-            child: Row(children: [
-              Expanded(
-                child: reusableCard(
-                  colour: cardColor,
-                  cardChild: reusableCardProp(
-                    icon: FontAwesomeIcons.mars,
-                    label: 'MALE',
-                  ),
-                ),
-              ),
-              Expanded(
-                child: reusableCard(
-                  colour: cardColor,
-                  cardChild: reusableCardProp(
-                    icon: FontAwesomeIcons.mars,
-                    label: 'MALE',
-                  ),
-                ),
-              ),
-            ]),
-          ),
+          // Expanded(
+          //   child: Row(children: [
+          //     Expanded(
+          //       child: reusableCard(
+          //         colour: kcardColor, cardChild: null, onPress: null,
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: reusableCard(
+          //         colour: kcardColor, cardChild: null, onPress: null,
+          //       ),
+          //     ),
+          //   ]),
+          // ),
           Container(
-            color: bottomcardColor,
+            color: kbottomcardColor,
             margin: EdgeInsets.only(top:10.0),
             width: double.infinity,
-            height: bottomBar,
+            height: kbottomBar,
           )
         ],
       ),
