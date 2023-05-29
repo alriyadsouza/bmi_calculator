@@ -16,6 +16,7 @@ class _InputPageState extends State<InputPage> {
   late Gender selectGender=Gender.male;
   int height=180;
   int weight=60;
+  int age=18;
 
     // Color malecardColor =inactivecardcolor;
     // Color femalecardColor=inactivecardcolor;
@@ -194,11 +195,11 @@ class _InputPageState extends State<InputPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
                       const Text(
-                        'WEIGHT',
+                        'AGE',
                         style: klabelTextStyles,
                       ),
                       Text(
-                        weight.toString(),
+                        age.toString(),
                         style: kNumberTextStyles,
                       ),
                       Row(
@@ -213,10 +214,11 @@ class _InputPageState extends State<InputPage> {
                             ),
                             onPressed: (){
                               setState(() {
-                                weight--;
+                                age--;
                               });
                             },
                           ),
+                          SizedBox(width: 10.0,),
                           RoundIconButton(
                             icon:FontAwesomeIcons.plus,
                             child: const Text('+',
@@ -226,7 +228,7 @@ class _InputPageState extends State<InputPage> {
                             ),
                             onPressed: (){
                               setState(() {
-                                weight++;
+                                age++;
                               });
                             },
                           ),
