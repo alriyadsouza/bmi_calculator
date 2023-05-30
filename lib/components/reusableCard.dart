@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import '../screens/input_page.dart';
 import 'reusableCardProp.dart';
 
 class reusableCard extends StatelessWidget {
