@@ -249,10 +249,14 @@ class _InputPageState extends State<InputPage> {
             },
             child: Container(
               color: kbottomcardColor,
-              child: const Text(
-                'CALCULATE',
+              child: Center(
+                child: Text(
+                  'CALCULATE',
+                  style: kLargeButtonTextStyle,
+                ),
               ),
               margin: EdgeInsets.only(top:10.0),
+              padding: EdgeInsets.only(bottom: 20.0),
               width: double.infinity,
               height: kbottomBar,
             ),
